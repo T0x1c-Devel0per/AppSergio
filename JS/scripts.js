@@ -142,7 +142,7 @@ function deleteData(id) {
         text: "¿Esta seguro de eliminar este usuario?",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Si, eliminar!',
+        confirmButtonText: 'Si, Eliminar!',
         cancelButtonText: 'No, Cancelar!',
         reverseButtons: true
     }).then((result) => {
@@ -211,46 +211,77 @@ function editData(id, nnombre, ttotal, aabono, ssaldo, ccedula, ttelefono, ddire
         var detalleServicio = form.querySelector('#DetalleServicio').value;
         var observaciones = form.querySelector('#Observaciones').value;
 
-        return clientesRef.update({
-            Nombre: nombre,
-            Total: total,
-            Abono: abono,
-            Saldo: saldo,
-            Cedula: cedula,
-            Telefono: telefono,
-            Direccion: direccion,
-            Articulo: articulo,
-            Marca: marca,
-            Modelo: modelo,
-            FechaRegistro: fechaRegistro,
-            FechaEntrega: fechaEntrega,
-            Caracteristicas: caracteristicas,
-            DetalleServicio: detalleServicio,
-            Observaciones: observaciones
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
         })
-            .then(() => {
-                console.log("Document successfully updated!");
-                btnEdit.innerHTML = 'Guardar';
-                document.getElementById('Nombre').value = "";
-                document.getElementById('Total').value = "";
-                document.getElementById('Abono').value = "";
-                document.getElementById('Saldo').value = "";
-                document.getElementById('Cedula').value = "";
-                document.getElementById('Telefono').value = "";
-                document.getElementById('Direccion').value = "";
-                document.getElementById('Articulo').value = "";
-                document.getElementById('Marca').value = "";
-                document.getElementById('Modelo').value = "";
-                document.getElementById('FechaRegistro').value = "";
-                document.getElementById('FechaEntrega').value = "";
-                document.getElementById('Caracteristicas').value = "";
-                document.getElementById('DetalleServicio').value = "";
-                document.getElementById('Observaciones').value = "";
-            })
-            .catch((error) => {
-                // The document probably doesn't exist.
-                console.error("Error updating document: ", error);
-            });
+        swalWithBootstrapButtons.fire({
+            title: 'Alerta',
+            text: "¿Esta seguro de editar este usuario?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si, Editar!',
+            cancelButtonText: 'No, Cancelar!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                    'Editado!',
+                    'Usuario Editado.',
+                    'success'
+                )
+                return clientesRef.update({
+                    Nombre: nombre,
+                    Total: total,
+                    Abono: abono,
+                    Saldo: saldo,
+                    Cedula: cedula,
+                    Telefono: telefono,
+                    Direccion: direccion,
+                    Articulo: articulo,
+                    Marca: marca,
+                    Modelo: modelo,
+                    FechaRegistro: fechaRegistro,
+                    FechaEntrega: fechaEntrega,
+                    Caracteristicas: caracteristicas,
+                    DetalleServicio: detalleServicio,
+                    Observaciones: observaciones
+                }).then(() => {
+                    console.log("Document successfully updated!");
+                    btnEdit.innerHTML = 'Guardar';
+                    document.getElementById('Nombre').value = "";
+                    document.getElementById('Total').value = "";
+                    document.getElementById('Abono').value = "";
+                    document.getElementById('Saldo').value = "";
+                    document.getElementById('Cedula').value = "";
+                    document.getElementById('Telefono').value = "";
+                    document.getElementById('Direccion').value = "";
+                    document.getElementById('Articulo').value = "";
+                    document.getElementById('Marca').value = "";
+                    document.getElementById('Modelo').value = "";
+                    document.getElementById('FechaRegistro').value = "";
+                    document.getElementById('FechaEntrega').value = "";
+                    document.getElementById('Caracteristicas').value = "";
+                    document.getElementById('DetalleServicio').value = "";
+                    document.getElementById('Observaciones').value = "";
+                }).catch((error) => {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'La solicitud se ha cancelado',
+                    'error'
+                )
+            }
+        })
     }
 }
 
