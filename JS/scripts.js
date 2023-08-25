@@ -24,7 +24,8 @@ var form = document.getElementById("mainForm")
 
 //Función para enviar los datos a Firebase
 function guardar() {
-
+    event.preventDefault();
+    
     // Obtenemos los valores de los campos del formulario
     var nombre = form.querySelector('#Nombre').value;
     var total = form.querySelector('#Total').value;
