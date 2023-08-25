@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const loadingOverlay = document.querySelector('.loading-overlay');
     // Mostrar la animación de carga
     loadingOverlay.style.display = 'flex';
-    // Ocultar la animación después de 2 segundos
+    // Ocultar la animación después de 1 segundos
     setTimeout(function () {
         loadingOverlay.style.display = 'none';
     }, 1000);
@@ -393,21 +393,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-    //Drop Down para el panel de control
-    $(document).ready(function () {
-        $(".dropdown-item").on("click", function () {
-            var selectedOption = $(this).data("option");
-            // Ocultar todos los divs
-            $("#divListar").hide();
-            $("#divModificar").hide();
-            // Mostrar el div correspondiente a la opción seleccionada
-            if (selectedOption === "listar") {
-                $("#divListar").show();
-            } else if (selectedOption === "modificar") {
-                $("#divModificar").show();
-            }
-        });
-    });
+    
 });
 
 
