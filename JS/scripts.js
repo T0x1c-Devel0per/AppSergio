@@ -399,20 +399,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Exportar Captura
 document.getElementById('capture').addEventListener('click', function () {
+    var nombre = form.querySelector('#Nombre').value;
     event.preventDefault();
     // Función para determinar qué elementos excluir
     function ignoreElements(element) {
         return element.id === 'btn-save' || element.id === 'capture';
          // Cambia esto según tus necesidades
     }
-
     // Convertir el div en una imagen excluyendo elementos específicos
     html2canvas(document.getElementById('content'), {
         ignoreElements: ignoreElements
     }).then(function (canvas) {
         // Crear un enlace para descargar la imagen
         var link = document.createElement('a');
-        link.download = 'div_image.png';
+        link.download = 'Factura ' + nombre + '.png';
         link.href = canvas.toDataURL('image/png');
         link.click();
     });
