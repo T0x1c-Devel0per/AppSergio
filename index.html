@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div class="form-container container">
+    <div id = "content" class="form-container container">
         <h1>Servicio Técnico Sergio Rivera</h1>
         <form id="mainForm" autocomplete="off">
             <div class="row">
@@ -198,8 +198,14 @@
                 </div>
             </div>
             <div class="container mt-5">
-                <button type="button" id="btn-save" class="btn btn-success btn-block" onclick="guardar()">Guardar Datos</button>
+                <div>
+                    <div>
+                        <button type="button" id="btn-save" class="btn btn-success btn-block" onclick="guardar()">Guardar Datos</button>
+                        <button id="capture" class="btn btn-secondary">Enviar Factura</button>
+                    </div>
+                </div>                
             </div>
+            
         </form>
     </div>
 
@@ -264,6 +270,7 @@
     <script src="JS/popper.min.js"></script>
     <script src="https://kit.fontawesome.com/070233a5c9.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 
 </body>
 
