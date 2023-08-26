@@ -25,7 +25,7 @@ var form = document.getElementById("mainForm")
 //Función para enviar los datos a Firebase
 function guardar() {
     event.preventDefault();
-    
+
     // Obtenemos los valores de los campos del formulario
     var nombre = form.querySelector('#Nombre').value;
     var total = form.querySelector('#Total').value;
@@ -290,7 +290,7 @@ function editData(id, nnombre, ttotal, aabono, ssaldo, ccedula, ttelefono, ddire
 document.addEventListener('DOMContentLoaded', function () {
     // Obtener referencia al input de fecha y hora
     var fechaRegistroInput = document.getElementById("FechaRegistro");
-    fechaRegistroInput.disabled = true;
+    
     // Obtener la fecha y hora actual en el formato deseado (YYYY-MM-DDTHH:mm)
     var fechaHoraActual = new Date().toISOString().slice(0, 10);
     // Asignar la fecha y hora al valor del input
