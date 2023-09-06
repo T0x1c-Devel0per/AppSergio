@@ -102,32 +102,66 @@ function guardar() {
 //Mostrar Datos en el form2
 var form2 = document.getElementById('form2-tbody')
 db.collection("clientes").onSnapshot((querySnapshot) => {
-    //Limpiar la tabla
-    form2.innerHTML = '';
+    // Almacenar los datos en un array
+    var data = [];
     querySnapshot.forEach((doc) => {
+        data.push({
+            id: doc.id,
+            Nombre: doc.data().Nombre,
+            Total: doc.data().Total,
+            Abono: doc.data().Abono,
+            Saldo: doc.data().Saldo,
+            Cedula: doc.data().Cedula,
+            Telefono: doc.data().Telefono,
+            Direccion: doc.data().Direccion,
+            Articulo: doc.data().Articulo,
+            Marca: doc.data().Marca,
+            Modelo: doc.data().Modelo,
+            FechaRegistro: doc.data().FechaRegistro,
+            FechaEntrega: doc.data().FechaEntrega,
+            Caracteristicas: doc.data().Caracteristicas,
+            DetalleServicio: doc.data().DetalleServicio,
+            Observaciones: doc.data().Observaciones
+        });
+    });
+
+    // Ordenar los datos por Cedula de mayor a menor
+    data.sort((a, b) => {
+        // Asumiendo que Cedula es un número, si es una cadena, conviértela a número
+        const cedulaA = parseFloat(a.Cedula);
+        const cedulaB = parseFloat(b.Cedula);
+        return cedulaB - cedulaA;
+    });
+
+    // Limpiar la tabla
+    form2.innerHTML = '';
+
+    // Mostrar los datos ordenados en la tabla
+    data.forEach((registro) => {
         form2.innerHTML += `
             <tr>
-            <td><button type="button" class="btn btn-danger"  onclick = "deleteData ('${doc.id}')">Eliminar</button></td>
-            <td><button type="button" class="btn btn-warning" onclick = "editData('${doc.id}', '${doc.data().Nombre}', '${doc.data().Total}', '${doc.data().Abono}', '${doc.data().Saldo}', '${doc.data().Cedula}', '${doc.data().Telefono}', '${doc.data().Direccion}', '${doc.data().Articulo}', '${doc.data().Marca}', '${doc.data().Modelo}', '${doc.data().FechaRegistro}', '${doc.data().FechaEntrega}', '${doc.data().Caracteristicas}', '${doc.data().DetalleServicio}', '${doc.data().Observaciones}')" >Editar</button></td>
-            <td>${doc.data().Nombre}</td>
-            <td>${doc.data().Total}</td>
-            <td>${doc.data().Abono}</td>
-            <td>${doc.data().Saldo}</td>
-            <td>${doc.data().Cedula}</td>
-            <td>${doc.data().Telefono}</td>
-            <td>${doc.data().Direccion}</td>
-            <td>${doc.data().Articulo}</td>
-            <td>${doc.data().Marca}</td>
-            <td>${doc.data().Modelo}</td>
-            <td>${doc.data().FechaRegistro}</td>
-            <td>${doc.data().FechaEntrega}</td>            
-            <td>${doc.data().Caracteristicas}</td>
-            <td>${doc.data().DetalleServicio}</td>
-            <td>${doc.data().Observaciones}</td>
+                <td><button type="button" class="btn btn-danger" onclick="deleteData('${registro.id}')">Eliminar</button></td>
+                <td><button type="button" class="btn btn-warning" onclick="editData('${registro.id}', '${registro.Nombre}', '${registro.Total}', '${registro.Abono}', '${registro.Saldo}', '${registro.Cedula}', '${registro.Telefono}', '${registro.Direccion}', '${registro.Articulo}', '${registro.Marca}', '${registro.Modelo}', '${registro.FechaRegistro}', '${registro.FechaEntrega}', '${registro.Caracteristicas}', '${registro.DetalleServicio}', '${registro.Observaciones}')">Editar</button></td>
+                <td>${registro.Nombre}</td>
+                <td>${registro.Total}</td>
+                <td>${registro.Abono}</td>
+                <td>${registro.Saldo}</td>
+                <td>${registro.Cedula}</td>
+                <td>${registro.Telefono}</td>
+                <td>${registro.Direccion}</td>
+                <td>${registro.Articulo}</td>
+                <td>${registro.Marca}</td>
+                <td>${registro.Modelo}</td>
+                <td>${registro.FechaRegistro}</td>
+                <td>${registro.FechaEntrega}</td>            
+                <td>${registro.Caracteristicas}</td>
+                <td>${registro.DetalleServicio}</td>
+                <td>${registro.Observaciones}</td>
             </tr>
         `
     });
 });
+
 
 //Borrar Datos
 function deleteData(id) {
@@ -404,7 +438,7 @@ document.getElementById('capture').addEventListener('click', function () {
     // Función para determinar qué elementos excluir
     function ignoreElements(element) {
         return element.id === 'btn-save' || element.id === 'capture';
-         // Cambia esto según tus necesidades
+        // Cambia esto según tus necesidades
     }
     // Convertir el div en una imagen excluyendo elementos específicos
     html2canvas(document.getElementById('content'), {
