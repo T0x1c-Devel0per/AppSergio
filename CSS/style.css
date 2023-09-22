@@ -14,9 +14,6 @@ textarea {
     height: 100px;
 }
 
-input {
-    /* border-radius: 5px; */
-}
 
 label {
     display: flex;
@@ -152,6 +149,8 @@ p {
 }
 
 .table-container {
+    height: 100vh !important;
+    overflow-x: auto;
     overflow-y: auto;
 }
 
