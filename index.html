@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" translate="no">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+        integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@100&family=Ysabeau+SC:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@100&family=Ysabeau+SC:wght@100&display=swap"
+        rel="stylesheet">
     <title>Inicio</title>
 </head>
 
@@ -45,7 +49,7 @@
             </div>
         </div>
     </div>
-    <div id = "content" class="form-container container">
+    <div id="content" class="form-container container">
         <h1>Servicio Técnico Sergio Rivera</h1>
         <form id="mainForm" autocomplete="off">
             <div class="row">
@@ -62,7 +66,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nombre Completo</label>
                                 <input type="text" class="form-control" id="Nombre" aria-describedby="emailHelp"
-                                    placeholder="Ingrese Nombre" autocomplete="off">
+                                    placeholder="Ingrese Nombre" autocomplete="off" required>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
@@ -157,7 +161,8 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Fecha Del Registro</label>
-                        <input type="date" class="custom-date-input form-control" id="FechaRegistro" aria-describedby="emailHelp" name="FechaRegistro">
+                        <input type="date" class="custom-date-input form-control" id="FechaRegistro"
+                            aria-describedby="emailHelp" name="FechaRegistro">
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -200,12 +205,12 @@
             <div class="container mt-5">
                 <div>
                     <div>
-                        <button type="button" id="btn-save" class="btn btn-success btn-block" onclick="guardar()">Guardar Datos</button>
-                        <button id="capture" class="btn btn-secondary">Enviar Factura</button>
+                        <button type="submit" id="btn-save" class="btn btn-success btn-block" onclick="guardar()">Guardar Datos</button>
+                        <button type="button" id="btn-edit" class="btn btn-info" style="display: none;">Confirmar Edición</button>
                     </div>
-                </div>                
+                </div>
             </div>
-            
+
         </form>
     </div>
 
@@ -214,15 +219,18 @@
         <div class="container">
             <h1>Panel de Control</h1>
         </div>
-        
+
 
         <div id="divListar" class="container mt-5">
             <div class="row">
-                <div class="col">
+                <div class="col-sm btn-spacing">
+                    <button type="button" id="btnMostrarTodos" class="btn btn-success">Mostrar Todos</button>
+                </div>
+                <div class="col-sm btn-spacing">
                     <button type="button" id="btnFiltrarSaldo" class="btn btn-primary">Saldo Pendiente</button>
                 </div>
-                <div class="col">
-                    <button type="button" id="btnMostrarTodos" class="btn btn-success">Mostrar Todos</button>
+                <div class="col-sm btn-spacing">
+                    <input type="text" id="searchInput" class="input-search" placeholder="Buscar cliente">
                 </div>
             </div>
             <div class="container table-container">
@@ -231,6 +239,8 @@
                         <tr>
                             <th>Eliminar</th>
                             <th>Editar</th>
+                            <th>Fecha Registro</th>
+                            <th>Fecha Entrega</th>
                             <th>Nombre</th>
                             <th>Total</th>
                             <th>Abono</th>
@@ -241,8 +251,6 @@
                             <th>Articulo</th>
                             <th>Marca</th>
                             <th>Modelo</th>
-                            <th>Fecha Registro</th>
-                            <th>Fecha Entrega</th>
                             <th>Caracteristicas</th>
                             <th>DetalleServicio</th>
                             <th>Observaciones</th>
@@ -271,6 +279,7 @@
     <script src="https://kit.fontawesome.com/070233a5c9.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+
 
 </body>
 

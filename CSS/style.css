@@ -24,6 +24,36 @@ label {
 p {
     color: white;
 }
+input[type="number"] {
+    -moz-appearance: textfield;
+    /* Firefox */
+    appearance: textfield;
+    /* Otros navegadores */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+textarea::-webkit-scrollbar {
+    width: 6px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background-color: #fffefe;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 3px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background-color: #000000;
+}
 
 
 
@@ -111,17 +141,15 @@ p {
     display: flex !important;
     flex-basis: auto;
 }
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+.input-search{
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
 }
 
+.btn-spacing{
+    margin-bottom: 2vh;
+}
 .bi {
     color: white;
 }
@@ -149,7 +177,6 @@ p {
 }
 
 .table-container {
-    height: 100vh !important;
     overflow-x: auto;
     overflow-y: auto;
 }
@@ -178,46 +205,29 @@ p {
     background: none;
 }
 
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
 
-
-
-
-
-
-
-
-
-
-input[type="number"] {
-    -moz-appearance: textfield;
-    /* Firefox */
-    appearance: textfield;
-    /* Otros navegadores */
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 
-textarea::-webkit-scrollbar {
-    width: 6px;
-}
 
-textarea::-webkit-scrollbar-track {
-    background-color: #fffefe;
-}
 
-textarea::-webkit-scrollbar-thumb {
-    background-color: black;
-    border-radius: 3px;
-}
 
-textarea::-webkit-scrollbar-thumb:hover {
-    background-color: #000000;
-}
+
+
+
+
+
+
+
+
+
 
 ::-webkit-scrollbar {
     width: 10px;
