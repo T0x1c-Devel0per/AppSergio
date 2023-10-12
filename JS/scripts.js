@@ -32,13 +32,14 @@ var originalData = [];
 function guardar() {
     event.preventDefault();
     // Obtenemos los valores de los campos del formulario
+    var cedula = form.querySelector('#Cedula').value;
     var nombre = form.querySelector('#Nombre').value;
-    var fechaRegistro = form.querySelector('#FechaRegistro').value;
-    var fechaEntrega = form.querySelector('#FechaEntrega').value;
     var total = form.querySelector('#Total').value;
     var abono = form.querySelector('#Abono').value;
     var saldo = form.querySelector('#Saldo').value;
-    var cedula = form.querySelector('#Cedula').value;
+    var fechaRegistro = form.querySelector('#FechaRegistro').value;
+    var fechaEntrega = form.querySelector('#FechaEntrega').value;
+    
     var telefono = form.querySelector('#Telefono').value;
     var direccion = form.querySelector('#Direccion').value;
     var articulo = form.querySelector('#Articulo').value;
@@ -89,11 +90,11 @@ function guardar() {
                 var fechaRegistroInput = document.getElementById("FechaRegistro");
                 var fechaHoraActual = new Date().toISOString().slice(0, 10);
                 // Restablece algunos campos (si lo deseas)
+                form.querySelector('#Cedula').value = '';
                 form.querySelector('#Nombre').value = '';
                 form.querySelector('#Total').value = '';
                 form.querySelector('#Abono').value = '';
                 form.querySelector('#Saldo').value = '';
-                form.querySelector('#Cedula').value = '';
                 form.querySelector('#Telefono').value = '';
                 form.querySelector('#Direccion').value = '';
                 form.querySelector('#Articulo').value = '';
@@ -145,13 +146,13 @@ function editData(id) {
                     if (doc.exists) {
                         var data = doc.data();
                         // Rellenamos el formulario de edición con los datos existentes
-                        document.getElementById('FechaRegistro').value = data.FechaRegistro;
-                        document.getElementById('FechaEntrega').value = data.FechaEntrega;
+                        document.getElementById('Cedula').value = data.Cedula;
                         document.getElementById('Nombre').value = data.Nombre;
                         document.getElementById('Total').value = data.Total;
                         document.getElementById('Abono').value = data.Abono;
                         document.getElementById('Saldo').value = data.Saldo;
-                        document.getElementById('Cedula').value = data.Cedula;
+                        document.getElementById('FechaRegistro').value = data.FechaRegistro;
+                        document.getElementById('FechaEntrega').value = data.FechaEntrega;
                         document.getElementById('Telefono').value = data.Telefono;
                         document.getElementById('Direccion').value = data.Direccion;
                         document.getElementById('Articulo').value = data.Articulo;
@@ -162,13 +163,14 @@ function editData(id) {
                         document.getElementById('Observaciones').value = data.Observaciones;
                         btnEdit.onclick = function () {
                             // Obtenemos los valores actualizados de los campos
-                            var fechaRegistro = document.getElementById('FechaRegistro').value;
-                            var fechaEntrega = document.getElementById('FechaEntrega').value;
+                            var cedula = document.getElementById('Cedula').value;
                             var nombre = document.getElementById('Nombre').value;
                             var total = document.getElementById('Total').value;
                             var abono = document.getElementById('Abono').value;
                             var saldo = document.getElementById('Saldo').value;
-                            var cedula = document.getElementById('Cedula').value;
+                            var fechaRegistro = document.getElementById('FechaRegistro').value;
+                            var fechaEntrega = document.getElementById('FechaEntrega').value;
+                            
                             var telefono = document.getElementById('Telefono').value;
                             var direccion = document.getElementById('Direccion').value;
                             var articulo = document.getElementById('Articulo').value;
@@ -179,13 +181,13 @@ function editData(id) {
                             var observaciones = document.getElementById('Observaciones').value;
                             // Actualizar los datos en Firestore
                             clienteRef.update({
-                                FechaRegistro: fechaRegistro,
-                                FechaEntrega: fechaEntrega,
+                                Cedula: cedula,
                                 Nombre: nombre,
                                 Total: total,
                                 Abono: abono,
                                 Saldo: saldo,
-                                Cedula: cedula,
+                                FechaRegistro: fechaRegistro,
+                                FechaEntrega: fechaEntrega,
                                 Telefono: telefono,
                                 Direccion: direccion,
                                 Articulo: articulo,
@@ -198,11 +200,11 @@ function editData(id) {
                                 var fechaRegistroInput = document.getElementById("FechaRegistro");
                                 var fechaHoraActual = new Date().toISOString().slice(0, 10);
                                 // Restablecemos algunos campos
+                                form.querySelector('#Cedula').value = '';
                                 form.querySelector('#Nombre').value = '';
                                 form.querySelector('#Total').value = '';
                                 form.querySelector('#Abono').value = '';
                                 form.querySelector('#Saldo').value = '';
-                                form.querySelector('#Cedula').value = '';
                                 form.querySelector('#Telefono').value = '';
                                 form.querySelector('#Direccion').value = '';
                                 form.querySelector('#Articulo').value = '';
@@ -242,13 +244,13 @@ db.collection("clientes").onSnapshot((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         originalData.push({
             id: doc.id,
-            FechaRegistro: doc.data().FechaRegistro,
-            FechaEntrega: doc.data().FechaEntrega,
+            Cedula: doc.data().Cedula,
             Nombre: doc.data().Nombre,
             Total: doc.data().Total,
             Abono: doc.data().Abono,
             Saldo: doc.data().Saldo,
-            Cedula: doc.data().Cedula,
+            FechaRegistro: doc.data().FechaRegistro,
+            FechaEntrega: doc.data().FechaEntrega,
             Telefono: doc.data().Telefono,
             Direccion: doc.data().Direccion,
             Articulo: doc.data().Articulo,
@@ -262,8 +264,8 @@ db.collection("clientes").onSnapshot((querySnapshot) => {
 
     // Ordenar los datos originales por fecha de registro
     originalData.sort((a, b) => {
-        const fechaA = new Date(a.FechaRegistro);
-        const fechaB = new Date(b.FechaRegistro);
+        const fechaA = new Date(a.Cedula);
+        const fechaB = new Date(b.Cedula);
         return fechaB - fechaA;
     });
 
@@ -274,13 +276,13 @@ db.collection("clientes").onSnapshot((querySnapshot) => {
         <tr>
         <td><button type="button" class="btn btn-danger" onclick="deleteData('${registro.id}')">Eliminar</button></td>
         <td><button type="button" class="btn btn-warning" onclick="editData('${registro.id}', '${registro.Nombre}', '${registro.Total}', '${registro.Abono}', '${registro.Saldo}', '${registro.Cedula}', '${registro.Telefono}', '${registro.Direccion}', '${registro.Articulo}', '${registro.Marca}', '${registro.Modelo}', '${registro.FechaRegistro}', '${registro.FechaEntrega}', '${registro.Caracteristicas}', '${registro.DetalleServicio}', '${registro.Observaciones}')">Editar</button></td>
-        <td>${registro.FechaRegistro}</td>
-        <td>${registro.FechaEntrega}</td> 
+        <td>${registro.Cedula}</td>
         <td>${registro.Nombre}</td>
         <td>${registro.Total}</td>
         <td>${registro.Abono}</td>
         <td>${registro.Saldo}</td>
-        <td>${registro.Cedula}</td>
+        <td>${registro.FechaRegistro}</td>
+        <td>${registro.FechaEntrega}</td> 
         <td>${registro.Telefono}</td>
         <td>${registro.Direccion}</td>
         <td>${registro.Articulo}</td>
@@ -320,13 +322,13 @@ function performSearch() {
         <tr>
         <td><button type="button" class="btn btn-danger" onclick="deleteData('${registro.id}')">Eliminar</button></td>
         <td><button type="button" class="btn btn-warning" onclick="editData('${registro.id}')">Editar</button></td>
-        <td>${registro.FechaRegistro}</td>
-        <td>${registro.FechaEntrega}</td>
+        <td>${registro.Cedula}</td>
         <td>${registro.Nombre}</td>
         <td>${registro.Total}</td>
         <td>${registro.Abono}</td>
         <td>${registro.Saldo}</td>
-        <td>${registro.Cedula}</td>
+        <td>${registro.FechaRegistro}</td>
+        <td>${registro.FechaEntrega}</td>
         <td>${registro.Telefono}</td>
         <td>${registro.Direccion}</td>
         <td>${registro.Articulo}</td>
@@ -416,7 +418,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function filtrarSaldoPendiente() {
         var rows = dataTableBody.getElementsByTagName('tr');
         for (var i = 0; i < rows.length; i++) {
-            var saldoCell = rows[i].cells[7]; // Índice de la celda de saldo en la fila
+            var saldoCell = rows[i].cells[6]; // Índice de la celda de saldo en la fila
             // Eliminar el símbolo "$" y convertir el saldo a un número
             var saldoNumerico = parseFloat(saldoCell.textContent.replace('$', ''));
             // Verificar si el saldo en la celda es igual a cero
