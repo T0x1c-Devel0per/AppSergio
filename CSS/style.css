@@ -1,11 +1,16 @@
+#divListar {
+    height: 100vh;
+}
+
 h1 {
     color: white;
     font-family: 'Ysabeau SC', sans-serif;
 }
 
+
 body {
     background-color: #2d2d2d;
-    overflow-x: hidden ;
+    overflow-x: hidden;
 }
 
 textarea {
@@ -24,6 +29,7 @@ label {
 p {
     color: white;
 }
+
 input[type="number"] {
     -moz-appearance: textfield;
     /* Firefox */
@@ -141,15 +147,17 @@ textarea::-webkit-scrollbar-thumb:hover {
     display: flex !important;
     flex-basis: auto;
 }
-.input-search{
+
+.input-search {
     border: none;
     border-radius: 5px;
     padding: 5px;
 }
 
-.btn-spacing{
+.btn-spacing {
     margin-bottom: 2vh;
 }
+
 .bi {
     color: white;
 }
@@ -182,10 +190,14 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 
 .table tbody td {
-    max-width: 500px; /* Establece un ancho máximo para las celdas */
-    overflow: hidden; /* Oculta el contenido que excede el ancho máximo */
-    text-overflow: ellipsis; /* Agrega puntos suspensivos (...) al final del texto cortado */
-    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+    max-width: 500px;
+    /* Establece un ancho máximo para las celdas */
+    overflow: hidden;
+    /* Oculta el contenido que excede el ancho máximo */
+    text-overflow: ellipsis;
+    /* Agrega puntos suspensivos (...) al final del texto cortado */
+    white-space: nowrap;
+    /* Evita que el texto se divida en múltiples líneas */
 }
 
 .table-container thead th {
@@ -199,7 +211,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     white-space: inherit;
 }
 
-.inputEdit{
+.inputEdit {
     border: 1px solid black;
     color: white;
     background: none;
