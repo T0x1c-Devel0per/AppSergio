@@ -1,7 +1,3 @@
-#divListar {
-    height: 100vh;
-}
-
 h1 {
     color: white;
     font-family: 'Ysabeau SC', sans-serif;
@@ -185,6 +181,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 
 .table-container {
+    overflow: hidden;
     overflow-x: auto;
     overflow-y: auto;
 }
